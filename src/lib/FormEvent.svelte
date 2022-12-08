@@ -1,122 +1,27 @@
 <script>
-  
-  let nameEvent = ''
-  let date = 0
+  import Api from './api/auth'
+  let username = ''
+  let password = ''
   let amountTicket = 0
   let price = 0
-  function tosend() {
-    crearEvent(amountTicket, nameEvent, date, price)
+
+  export const postLogin = async () => {
+    // loader = true
+
+    try {
+      const response = await Api.post('login',  {
+        username: username,
+        password: password,
+      })
+      console.log(response)
+      return response
+    } catch (error) {
+      console.error(error)
+    }
   }
 </script>
 
 <style>
-  h1 {
-    color: black;
-  }
-  .card {
-    background-color: aliceblue;
-    border-radius: 1em;
-    margin-bottom: 3em;
-  }
-.card:hover {
-  box-shadow: 0 5px 35px 0px rgba(0,0,0,.1);
-}
-
-.card:hover::before, .card:hover::after {
-  display: block;
-  content: '';
-  position: absolute;
-  width: 250px;
-  height: 250px;
-  background: #FDA8CF;
-  border-radius: 75px;
-  z-index: -1;
-  animation: 1s clockwise infinite;
-}
-
-.card:hover:after {
-  background: #F3CE5E;
-  animation: 2s counterclockwise infinite;
-}
-
-@keyframes clockwise {
-  0% {
-    top: -5px;
-    left: 0;
-  }
-  12% {
-    top: -2px;
-    left: 2px;
-  }
-  25% {
-    top: 0;
-    left: 5px;    
-  }
-  37% {
-    top: 2px;
-    left: 2px;
-  }
-  50% {
-    top: 5px;
-    left: 0;    
-  }
-  62% {
-    top: 2px;
-    left: -2px;
-  }
-  75% {
-    top: 0;
-    left: -5px;
-  }
-  87% {
-    top: -2px;
-    left: -2px;
-  }
-  100% {
-    top: -5px;
-    left: 0;    
-  }
-}
-
-@keyframes counterclockwise {
-  0% {
-    top: -5px;
-    right: 0;
-  }
-  12% {
-    top: -2px;
-    right: 2px;
-  }
-  25% {
-    top: 0;
-    right: 5px;    
-  }
-  37% {
-    top: 2px;
-    right: 2px;
-  }
-  50% {
-    top: 5px;
-    right: 0;    
-  }
-  62% {
-    top: 2px;
-    right: -2px;
-  }
-  75% {
-    top: 0;
-    right: -5px;
-  }
-  87% {
-    top: -2px;
-    right: -2px;
-  }
-  100% {
-    top: -5px;
-    right: 0;    
-  }
-}
-
   input {
     border-radius: 3px;
     font-size: 1.5rem;
@@ -135,13 +40,17 @@
 </style>
 
 <div class="card">
-  <h1>Make your event</h1>
-  <input value={nameEvent} type="text" placeholder="Name event" />
+
+  <h1>
+    SalesMan
+    <span style="color: goldenrod;">Farma</span>
+  </h1>
+  <input bind:value={username} type="text" placeholder="Name" />
   <br />
-  <input value={date} type="number" placeholder="Date evento" />
- <br/>
+  <input bind:value={password} type="password" placeholder="Password" />
+  <br />
 
   <div>
-    <button on:click={tosend}>Create</button>
+    <button on:click={postLogin}>Login</button>
   </div>
 </div>
