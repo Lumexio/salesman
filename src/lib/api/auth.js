@@ -28,9 +28,10 @@ const apiRequest = (method, url, request) => {
 
 // function to execute the http post request
 const post = (url, request) => apiRequest("post", url, request);
+const delet = (url, request) => apiRequest("delete", url, request);
 const get = (url, request) => apiRequest("get", url, request);
 
 
 // expose your method to other services or actions
-const API = { post, get };
+const API = { post, get, delet };
 export default API;

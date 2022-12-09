@@ -1,5 +1,6 @@
 <script>
   import Api from './api/auth'
+  import { token, rol } from './stores/localsave'
   let username = ''
   let password = ''
   let amountTicket = 0
@@ -7,13 +8,13 @@
 
   export const postLogin = async () => {
     // loader = true
-
     try {
-      const response = await Api.post('login',  {
+      const response = await Api.post('login', {
         username: username,
         password: password,
       })
-      console.log(response)
+      token.set(response.token)
+      rol.set(response.position)
       return response
     } catch (error) {
       console.error(error)
@@ -22,21 +23,7 @@
 </script>
 
 <style>
-  input {
-    border-radius: 3px;
-    font-size: 1.5rem;
-    margin: 5px;
-  }
-  button {
-    background-color: black;
-    border: transparent;
-    font-size: 1.2rem;
-  }
-  button:hover {
-    background-color: goldenrod;
-    color: black;
-    border: transparent;
-  }
+
 </style>
 
 <div class="card">
