@@ -1,6 +1,12 @@
 <script>
   import Api from './api/auth'
   import { token, rol } from './stores/localsave'
+  import { openModal } from 'svelte-modals'
+  import Modal from './ModalProduct.svelte'
+
+  function handleClick() {
+    openModal(Modal, { title: 'Alert', message: 'This is an alert' })
+  }
 
   let arrayProducts = []
   let productid = null
@@ -51,8 +57,7 @@
 </style>
 
 <div class="card">
-  <input bind:value={productid} type="number" placeholder="Product id" />
-  <button on:click={deleteProduct}>Delete</button>
+  <button on:click={handleClick}>Crear Producto</button>
   <table class="tableContainer">
     <thead>
       <tr>
@@ -71,4 +76,6 @@
       {/each}
     </tbody>
   </table>
+  <input bind:value={productid} type="number" placeholder="Product id" />
+  <button on:click={deleteProduct}>Delete</button>
 </div>
