@@ -52,7 +52,7 @@
 </style>
 
 <div class="card h-full">
-  <div cartSpace>
+  <div class="cartSpace">
     <p>sadasd</p>
   </div>
   <div>
